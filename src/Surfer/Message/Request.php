@@ -426,7 +426,7 @@ final class Request extends Message {
 
 
   /**
-   * @brief This helper forces request to use the Authorization Basic mode.
+   * @brief This helper forces request to use the Bearer authentication mode.
    * @param string $value The value of the bearer.
    */
   public function setBearerAuth($value) {
