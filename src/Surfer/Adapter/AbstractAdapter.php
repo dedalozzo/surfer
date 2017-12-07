@@ -27,7 +27,7 @@ abstract class AbstractAdapter implements IClientAdapter {
   const DEFAULT_PORT = "80"; //!< Default port.
 
   const SCHEME_HOST_PORT_URI = '/^
-	        (?P<scheme>tcp:\/\/|ssl:\/\/|tls:\/\/)?          # Scheme
+	        (?P<scheme>tcp:\/\/|ssl:\/\/|tls:\/\/|http:\/\/|https:\/\/)? # Scheme
 	        # Authority
 	        (?P<host>[a-z0-9\-._~%]+                         # Named host
 	        |     \[[a-f0-9:.]+\]                            # IPv6 host
