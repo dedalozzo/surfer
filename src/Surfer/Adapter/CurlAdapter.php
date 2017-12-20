@@ -120,7 +120,7 @@ class CurlAdapter extends AbstractAdapter {
     } // switch
 
     // Sets the request Uniform Resource Locator.
-    $opts[CURLOPT_URL] = "http://".$this->host.":".$this->port.$request->getPath().$request->getQueryString();
+    $opts[CURLOPT_URL] = $this->scheme.$this->host.":".$this->port.$request->getPath().$request->getQueryString();
 
     // Includes the header in the output. We need this because our Response object will parse them.
     // NOTE: we don't include header anymore, because we use the option CURLOPT_HEADERFUNCTION.
