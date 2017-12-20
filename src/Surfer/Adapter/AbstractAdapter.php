@@ -24,7 +24,7 @@ abstract class AbstractAdapter implements IClientAdapter {
 
   const DEFAULT_SERVER = "127.0.0.1:80"; //!< Default server.
   const DEFAULT_HOST = "127.0.0.1"; //!< Default host.
-  const DEFAULT_PORT = "80"; //!< Default port.
+  const DEFAULT_PORT = 80; //!< Default port.
 
   const SCHEME_HOST_PORT_URI = '/^
 	        (?P<scheme>tcp:\/\/|ssl:\/\/|tls:\/\/|http:\/\/|https:\/\/)? # Scheme
@@ -76,7 +76,7 @@ abstract class AbstractAdapter implements IClientAdapter {
     if (preg_match(self::SCHEME_HOST_PORT_URI, $server, $matches)) {
       $this->scheme = isset($matches['scheme']) ? $matches['scheme'] : "tcp://";
       $this->host = isset($matches['host']) ? $matches['host'] : self::DEFAULT_HOST;
-      $this->port = isset($matches['port']) ? substr($matches['port'], 1) : self::$defaultPorts[$this->scheme];
+      $this->port = isset($matches['port']) ? (int) substr($matches['port'], 1) : self::$defaultPorts[$this->scheme];
     }
     else // Match attempt failed.
       throw new \InvalidArgumentException(sprintf("'%s' is not a valid URI.", $server));
