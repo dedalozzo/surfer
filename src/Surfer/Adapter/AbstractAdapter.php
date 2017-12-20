@@ -45,6 +45,14 @@ abstract class AbstractAdapter implements IClientAdapter {
   protected $userName;
   protected $password;
 
+  // Stores the default ports used by the supported protocols.
+  protected static $defaultPorts = array( // Cannot use [] syntax otherwise Doxygen generates a warning.
+    'http://' => 80,
+    'https://' => 443,
+    'tcp://' => 80,
+    'tls://' => 443,
+    'ssl://' => 993
+  );
 
   // URI specifying address of proxy server. (e.g. tcp://proxy.example.com:5100).
   //protected $proxy = NULL;
@@ -68,7 +76,7 @@ abstract class AbstractAdapter implements IClientAdapter {
     if (preg_match(self::SCHEME_HOST_PORT_URI, $server, $matches)) {
       $this->scheme = isset($matches['scheme']) ? $matches['scheme'] : "tcp://";
       $this->host = isset($matches['host']) ? $matches['host'] : self::DEFAULT_HOST;
-      $this->port = isset($matches['port']) ? substr($matches['port'], 1) : self::DEFAULT_PORT;
+      $this->port = isset($matches['port']) ? substr($matches['port'], 1) : self::$defaultPorts[$this->scheme];
     }
     else // Match attempt failed.
       throw new \InvalidArgumentException(sprintf("'%s' is not a valid URI.", $server));
