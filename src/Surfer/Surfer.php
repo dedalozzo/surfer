@@ -29,8 +29,10 @@ class Surfer {
   //! The user agent name.
   const USER_AGENT_NAME = "Surfer";
 
-  // Socket or cURL HTTP client adapter.
-  private $client;
+  /**
+   * @var IClientAdapter $client
+   */
+  protected $client;
 
 
   /**
