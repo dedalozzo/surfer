@@ -26,6 +26,9 @@ class CurlAdapter extends AbstractAdapter {
   // cURL handle.
   private $handle;
 
+  // Timeout is seconds.
+  private $timeout = NULL;
+
 
   /**
    * @copydoc AbstractAdapter::__construct()
@@ -61,7 +64,7 @@ class CurlAdapter extends AbstractAdapter {
    * @copydoc AbstractAdapter::setTimeout()
    */
   public function setTimeout($seconds) {
-    curl_setopt($this->handle, CURLOPT_TIMEOUT, $seconds);
+    $this->timeout = (int)$seconds;
   }
 
 
@@ -180,6 +183,9 @@ class CurlAdapter extends AbstractAdapter {
           return strlen($buffer);
         });
     }
+
+    if ($this->timeout)
+      curl_setopt($this->handle, CURLOPT_TIMEOUT, $this->timeout);
 
     if ($result = curl_exec($this->handle)) {
       $response = new Response($header);
