@@ -34,4 +34,12 @@ interface IClientAdapter {
    */
   function send(Request $request, IChunkHook $chunkHook = NULL);
 
+
+  /**
+   * @brief Sets the maximum number of seconds the request will take to be performed.
+   * @param int $seconds The timeout in seconds.
+   * @return bool Returns `true` on success or `false` on failure.
+   */
+  function setTimeout($seconds);
+
 } 

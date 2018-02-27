@@ -58,6 +58,14 @@ class CurlAdapter extends AbstractAdapter {
 
 
   /**
+   * @copydoc AbstractAdapter::setTimeout()
+   */
+  public function setTimeout($seconds) {
+    curl_setopt($this->handle, CURLOPT_TIMEOUT, $seconds);
+  }
+
+
+  /**
    * @copydoc AbstractAdapter::send()
    * @bug https://github.com/dedalozzo/eoc-client/issues/2
    */

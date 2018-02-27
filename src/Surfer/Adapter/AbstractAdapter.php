@@ -95,6 +95,15 @@ abstract class AbstractAdapter implements IClientAdapter {
   abstract public function initialize();
 
 
+
+  /**
+   * @brief Sets the maximum number of seconds the request will take to be performed.
+   * @param int $seconds The timeout in seconds.
+   * @return bool Returns `true` on success or `false` on failure.
+   */
+  abstract public function setTimeout($seconds);
+
+
   /**
    * @brief This method is used to send an HTTP Request.
    * @details You can also provide an instance of a class that implements the IChunkHook interface, to deal with a chunked

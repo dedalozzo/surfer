@@ -241,6 +241,14 @@ class SocketAdapter extends AbstractAdapter {
 
 
   /**
+   * @copydoc AbstractAdapter::setTimeout()
+   */
+  public function setTimeout($seconds) {
+    return stream_set_timeout($this->handle, $seconds);
+  }
+
+
+  /**
    * @copydoc AbstractAdapter::send()
    */
   public function send(Request $request, IChunkHook $chunkHook = NULL) {
